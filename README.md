@@ -1,111 +1,94 @@
-FLAT Assignment: C++ Finite State Transducer Project
+# FLAT Assignment: C++ Finite State Transducer Toolkit
 
-This project is a C++ application built for the Formal Languages and Automata Theory (FLAT) course. It demonstrates how Finite State Transducers (FSTs) can be used to perform simple string manipulations such as binary complement and case conversion, along with visual representations of these FSTs.
+This project is a C++ application developed for the Formal Languages and Automata Theory (FLAT) course. It demonstrates **Binary Complement** and **Case Conversion** Finite State Transducers (FSTs) using the OpenFST library.
 
-The program provides an interactive command-line interface to enter input strings and see the corresponding FST outputs both in .fst and graphical .png formats.
+The program allows the user to enter input strings interactively and generates both `.fst` files and visual diagrams for the FSTs.
 
-🔹 Features
+## ✨ Features
 
-Binary Complement: Flips bits in a binary string (0 → 1, 1 → 0).
+- **Binary Complement**: Flips bits in a binary string (0 → 1, 1 → 0).  
+- **Case Conversion**: Converts lowercase letters to uppercase and vice versa.
 
-Case Conversion: Converts lowercase letters to uppercase and uppercase letters to lowercase.
+## 🔧 Prerequisites
 
-Note: Additional modules like string reversal or tokenization could be added in the future.
+Make sure you have the following installed:
 
-⚙️ Prerequisites
+- Ubuntu-based Linux distribution  
+- g++ compiler  
+- [Anaconda or Miniconda](https://www.anaconda.com/)  
+- OpenFST (via conda)  
+- Graphviz (for visualizing FSTs)
 
-Make sure your system has the following installed:
+## 🚀 Setup Instructions
 
-Linux/Ubuntu (tested on Ubuntu 24.04)
+1. **Clone the Repository**  
+```bash
+git clone <your-repository-link>
+cd <repository-folder>
+```
 
-g++ compiler for C++
-
-Anaconda/Miniconda for managing packages
-
-Graphviz to generate visual diagrams of FSTs
-
-Git to clone the project
-
-🛠️ Setup Instructions
-1. Clone the Repository
-git clone [your-repo-link]
-cd FLAT-Assignment
-
-2. Create Conda Environment
+2. **Create Conda Environment and Install Dependencies**  
+```bash
 conda create -n flat_fst_cpp
 conda activate flat_fst_cpp
-
-3. Install Dependencies
 conda install -c conda-forge openfst -y
 sudo apt update
 sudo apt install graphviz -y
+```
 
-📁 Project Structure
-FLAT-Assignment/
-│
-├── include/       # Header files (.h)
-├── src/           # Source files (.cpp)
-├── outputs/       # Generated .fst files
-├── diagram/       # Graphical .dot and .png files
-└── syms.txt       # Symbol table for FSTs
-
-💻 Compilation & Execution
-Compile the Program
+3. **Compile the Project**  
+```bash
 g++ src/main.cpp src/binary_complement.cpp src/case_conversion.cpp \
 -I include -I $CONDA_PREFIX/include -L $CONDA_PREFIX/lib -lfst -o fst_program
+```
 
-Set Library Path
+4. **Set Library Path**  
+```bash
 export LD_LIBRARY_PATH=$CONDA_PREFIX/lib:$LD_LIBRARY_PATH
+```
 
-Run the Program
+5. **Run the Program**  
+```bash
 ./fst_program
+```
 
+## 🕹️ Usage Example
 
-Follow prompts to enter binary or text strings.
+**Binary Complement**
+```
+Enter binary string: 1011
+Binary complement FST saved in outputs/binary_complement.fst
+```
 
-The program automatically generates the corresponding FST files and diagram files.
+**Case Conversion**
+```
+Enter text string for case conversion: AbC
+Case conversion FST saved in outputs/case_conversion.fst
+```
 
-🖼️ Generating Diagrams
-
-To visualize the FSTs:
-
-fstdraw --isymbols=syms.txt --osymbols=syms.txt outputs/binary_complement.fst diagram/binary_complement.dot
-fstdraw --isymbols=syms.txt --osymbols=syms.txt outputs/case_conversion.fst diagram/case_conversion.dot
-
+The corresponding `.dot` diagrams are generated in `diagram/` and can be converted to `.png` using:
+```bash
 $CONDA_PREFIX/bin/dot -Tpng diagram/binary_complement.dot -o diagram/binary_complement.png
 $CONDA_PREFIX/bin/dot -Tpng diagram/case_conversion.dot -o diagram/case_conversion.png
+```
 
+## 📁 Directory Structure
 
-.dot files are text-based graphs of FSTs
+```
+FLAT-Assignment/
+│
+├── include/      # Header files (.h)
+├── src/          # C++ source files (.cpp)
+├── outputs/      # Generated .fst files
+├── diagram/      # Generated .dot and .png diagrams
+└── syms.txt      # Symbol table for FSTs
+```
 
-.png files are rendered images of the FSTs
+## 🔬 Project Overview
 
-🔍 How It Works
+- **main.cpp**: Command-line interface, handles user input and dispatches tasks.  
+- **binary_complement.cpp/h**: Builds FST for binary complement.  
+- **case_conversion.cpp/h**: Builds FST for case conversion.  
+- Generates `.fst` files and `.dot` diagrams dynamically for each input.  
 
-Input Handling: The program reads the user input string.
-
-FST Construction:
-
-Each module creates a StdVectorFst object.
-
-States and arcs are added dynamically based on the input.
-
-File Output:
-
-.fst files are saved in outputs/.
-
-.dot files are generated using OpenFST's fstdraw.
-
-.png diagrams are created using Graphviz's dot tool.
-
-Visualization: The diagrams reflect the exact structure of the FST for the input string.
-
-The system is designed modularly so each input generates a unique FST diagram automatically.
-
-📝 Notes
-
-Keep .fst and .png files organized in outputs/ and diagram/.
-
-The program is interactive; each run produces fresh FSTs depending on input.
-
-syms.txt provides the symbol table necessary for FST visualization.
+The program demonstrates the fundamentals of FST construction and visualization with OpenFST.
