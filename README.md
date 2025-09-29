@@ -1,4 +1,4 @@
-# FLAT Assignment: C++ Finite State Transducer Toolkit
+# FLAT Assignment: Finite State Transducers in C++ with OpenFST
 
 This project is a C++ application developed for the Formal Languages and Automata Theory (FLAT) course. It demonstrates **Binary Complement** and **Case Conversion** Finite State Transducers (FSTs) using the OpenFST library.
 
@@ -23,8 +23,8 @@ Make sure you have the following installed:
 
 1. **Clone the Repository**  
 ```bash
-git clone <your-repository-link>
-cd <repository-folder>
+git clone https://github.com/Moon-boruah/FLAT-ASSIGNMENT
+cd FLAT-Assignment
 ```
 
 2. **Create Conda Environment and Install Dependencies**  
